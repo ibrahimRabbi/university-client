@@ -15,28 +15,38 @@ const AdminSidebar = () => {
         },
         {
             key: Math.random(),
+            label: <NavLink to='*'>Courses</NavLink>
+        },
+        {
+            key: Math.random(),
             label: <NavLink to='/semester'>Assign Semester</NavLink>,
         },
         {
             key: Math.random(),
-            label: "user Managment",
-        },
-        {
-            key: Math.random(),
-            label: 'Create User',
+            label: "student Managment",
             children: [
                 {
                     key: Math.random(),
-                    label: <NavLink to='/semester'>Assign Semester</NavLink>,
+                    label: <NavLink to='*'>Create Student</NavLink>
                 },
                 {
                     key: Math.random(),
-                    label: <NavLink to='/semester'>Assign Semester</NavLink>,
+                    label: <NavLink to='/admin/all-student'>All Student</NavLink>
+                }
+            ]
+        },
+        {
+            key: Math.random(),
+            label: 'Faculty Managment',
+            children: [
+                {
+                    key: Math.random(),
+                    label: <NavLink to='*'>Create Student</NavLink>
                 },
                 {
                     key: Math.random(),
-                    label: <NavLink to='/semester'>Assign Semester</NavLink>,
-                },
+                    label: <NavLink to='*'>All Student</NavLink>
+                }
             ]
 
         }

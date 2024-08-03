@@ -24,7 +24,7 @@ const Login = () => {
         e.preventDefault()
         const loggedin = await loginFunc({ rollId: e.target.roll.value, password: e.target.pass.value }).unwrap()
         const tokenDecoded:JwtPayload = jwtDecode(loggedin.token) 
-        dispatch(setUser(tokenDecoded))
+        dispatch(setUser({tokenDecoded,token:loggedin.token}))
         navigate('/')
     }
 

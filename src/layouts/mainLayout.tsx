@@ -1,9 +1,10 @@
 import {Navigate, NavLink, Outlet} from "react-router-dom";
-import { Layout } from 'antd';
+import { Button, Layout } from 'antd';
 import AdminSidebar from "./sidebar/AdminSidebar";
-import { useAppSelector } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
 import StudentSidebar from "./sidebar/StudentSidebar";
-import FacultySidebar from "./sidebar/FacultySidebar";
+ 
+import { removeUser } from "../redux/features/auth/userSlice";
  
 // import StudentSidebar from "./sidebar/StudentSidebar";
  
@@ -14,6 +15,8 @@ const { Header, Content} = Layout;
 const MainLayout = () => {
 
     const userData = useAppSelector(state => state.users)
+    const dispatch = useAppDispatch()
+    
 
      
     
@@ -21,18 +24,17 @@ const MainLayout = () => {
        return <Navigate to='/auth/sign-in'/>
 }
 
-     
+    const logOutHandler = () => {
+        dispatch(removeUser(null))
+    }
 
-
-
+    
     return (
         <Layout>
-             {userData.role === 'admin'? <AdminSidebar/>: userData.role === 'faculty'? <FacultySidebar/>:<StudentSidebar/>}
+             {userData.role === 'faculty'? <AdminSidebar/>:<StudentSidebar/>}
             <Layout>
                 <Header style={{ padding: 0 }}>
-                    <NavLink to='#'>
-                        <h1 style={{color:"white",textAlign:'center'}}>PH University</h1>
-                    </NavLink>
+                    {userData.user ? <Button onClick={logOutHandler}>Log Out</Button>:''}
                 </Header>
                 <Content style={{ margin: '24px 16px 0' }}>
                     <div
@@ -41,7 +43,7 @@ const MainLayout = () => {
                             minHeight: 360,
                             height: '100vh'
                         }}>
-                        <Outlet />
+                        <Outlet/>
                     </div>
                 </Content>
                  

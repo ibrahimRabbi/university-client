@@ -1,9 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/mainLayout";
 import Admin from "../pages/admin/admin";
-import Faculty from "../pages/faculty/faculty";
-import Semester from "../pages/semester/semester";
 import Login from "../pages/login/Login";
+import AllStudent from "../pages/admin/AllStudent";
 
 const router = createBrowserRouter([
     {
@@ -19,13 +18,9 @@ const router = createBrowserRouter([
                 element: <Admin />
             },
             {
-                path: 'faculty',
-                element: <Faculty />
-            },
-            {
-                path: 'semester',
-                element: <Semester />
-            },
+                path: 'admin/all-student',
+                element:<AllStudent/>
+            } 
         ]
     },
     {
